@@ -1,0 +1,14 @@
+spring:
+  application:
+    name: mall-coupon
+#  profiles:
+    # 环境
+#    active: dev
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        # 文件后缀名
+        file-extension: yaml
+  # 多种配置优先级
+  # 服务名-profile.yaml > 服务名称.yaml > 本地配置
