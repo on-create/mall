@@ -23,5 +23,4 @@ class MallProductApplicationTests {
 
         brandService.updateById(brandEntity);
     }
-
 }
