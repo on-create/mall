@@ -3,6 +3,7 @@ package com.example.mall.product.service.impl;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -50,6 +51,21 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         // TODO 1.检查当前删除的菜单，是否被别的地方引用
         // 逻辑删除
         baseMapper.deleteBatchIds(asList);
+    }
+
+    @Override
+    public Long[] findCatelogPath(Long catelogId) {
+        LinkedList<Long> paths = new LinkedList<>();
+        findParentPath(catelogId, paths);
+        return paths.toArray(new Long[0]);
+    }
+
+    private void findParentPath(Long catelogId, LinkedList<Long> paths) {
+        paths.addFirst(catelogId);
+        CategoryEntity entity = this.getById(catelogId);
+        if (entity.getParentCid() != 0) {
+            findParentPath(entity.getParentCid(), paths);
+        }
     }
 
     private List<CategoryEntity> getChildren(CategoryEntity root, List<CategoryEntity> all) {
