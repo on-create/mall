@@ -1,5 +1,7 @@
 package com.example.mall.product.service.impl;
 
+import com.example.mall.product.service.CategoryBrandRelationService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -19,10 +21,14 @@ import com.example.common.utils.Query;
 import com.example.mall.product.dao.CategoryDao;
 import com.example.mall.product.entity.CategoryEntity;
 import com.example.mall.product.service.CategoryService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("categoryService")
 public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity> implements CategoryService {
+
+    @Autowired
+    private CategoryBrandRelationService categoryBrandRelationService;
 
     @Override
     public PageUtils queryPage(Map<String, Object> params) {
@@ -58,6 +64,17 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryDao, CategoryEntity
         LinkedList<Long> paths = new LinkedList<>();
         findParentPath(catelogId, paths);
         return paths.toArray(new Long[0]);
+    }
+
+    /**
+     * 级联更新所有关联的数据
+     * @param category
+     */
+    @Transactional
+    @Override
+    public void updateCascade(CategoryEntity category) {
+        this.updateById(category);
+        categoryBrandRelationService.updateCategory(category.getCatId(), category.getName());
     }
 
     private void findParentPath(Long catelogId, LinkedList<Long> paths) {
