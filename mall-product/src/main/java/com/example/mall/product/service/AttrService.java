@@ -5,7 +5,7 @@ import com.example.common.utils.PageUtils;
 import com.example.mall.product.entity.AttrEntity;
 import com.example.mall.product.vo.AttrGroupRelationVo;
 import com.example.mall.product.vo.AttrVo;
-import com.example.mall.product.vo.response.AttrRespVo;
+import com.example.mall.product.vo.AttrRespVo;
 
 import java.util.List;
 import java.util.Map;

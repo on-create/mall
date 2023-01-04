@@ -1,6 +1,5 @@
-package com.example.mall.product.vo.response;
+package com.example.mall.product.vo;
 
-import com.example.mall.product.vo.AttrVo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

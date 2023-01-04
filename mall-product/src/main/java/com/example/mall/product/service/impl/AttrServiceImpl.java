@@ -12,7 +12,7 @@ import com.example.mall.product.entity.CategoryEntity;
 import com.example.mall.product.service.CategoryService;
 import com.example.mall.product.vo.AttrGroupRelationVo;
 import com.example.mall.product.vo.AttrVo;
-import com.example.mall.product.vo.response.AttrRespVo;
+import com.example.mall.product.vo.AttrRespVo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
